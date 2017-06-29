@@ -4,6 +4,7 @@
     /* ---------------------------------- Local Variables ---------------------------------- */
     var service = new EmployeeService();
     service.initialize().done(function () {
+        renderHomeView();
         console.log("Service initialized");
     });
 
@@ -41,6 +42,16 @@
                 $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
             }
         });
+    }
+
+    function renderHomeView(){
+        var html = 
+        "<p><button >Help</button></p>" +
+        "<h1>Directory</h1>" +
+        "<input class='search-key' type='search' placeholder='Enter name'/>" +
+        "<ul class='employee-list'></ul>";
+        $('body').html(html);
+        $('.search-key').on('keyup', findByName);
     }
 
 }());
