@@ -8,16 +8,16 @@
 
     var service = new EmployeeService();
     service.initialize().done(function () {
-        $('body').html(new HomeView(service).render().$el);
+        slider.slidePage(new HomeView(service).render().$el);
         console.log("Service initialized");
 
         router.addRoute('', function() {
-            $('body').html(new HomeView(service).render().$el);
+            slider.slidePage(new HomeView(service).render().$el);
         });
 
         router.addRoute('employees/:id', function(id) {
             service.findById(parseInt(id)).done(function(employee) {
-                $('body').html(new EmployeeView(employee).render().$el);
+                slider.slidePage(new EmployeeView(employee).render().$el);
             });
         });
 
@@ -25,8 +25,7 @@
 
     });
 
-    service.initialize().done(function () {
-    });
+    var slider = new PageSlider($('body'));
 
     /* --------------------------------- Event Registration -------------------------------- */
     $('.search-key').on('keyup', findByName);
