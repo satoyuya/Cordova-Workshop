@@ -6,6 +6,7 @@
     EmployeeListView.prototype.template =  Handlebars.compile($("#employee-list-tpl").html());
     EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
 
+    var slider = new PageSlider($('body'));
     var service = new EmployeeService();
     service.initialize().done(function () {
         slider.slidePage(new HomeView(service).render().$el);
@@ -25,7 +26,6 @@
 
     });
 
-    var slider = new PageSlider($('body'));
 
     /* --------------------------------- Event Registration -------------------------------- */
     $('.search-key').on('keyup', findByName);
